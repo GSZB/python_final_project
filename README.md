@@ -1,6 +1,6 @@
-# python_final_project
+# python_final_project: PythonNoobs
 
-**Team: PythonNoob**
+**Team: PythonNoobs**
 Roman Tymoshenko - Scrum Master  
 Mykyta Malevanets - Executive Manager
 Gönczy Szabolcs - Team Lead
