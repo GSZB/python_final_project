@@ -133,6 +133,28 @@ class AddressBook(UserDict):
 
         return result
 
+class Note:
+    def __init__(self, text):
+        self.text = text
+        self.id = None
+
+    def edit(self, new_text):
+        self.text = new_text
+
+    def __str__(self):
+        return f"[{self.id}] {self.text}"
+    
+class NotesBook(UserDict):
+    def __init__(self):
+        super().__init__()
+        self.counter = 1
+
+    def add_note(self, text):
+        note = Note(text)
+        note.id = self.counter
+        self.data[self.counter] = note
+        self.counter += 1
+        return note
 
 if __name__ == "__main__":
     book = AddressBook()
