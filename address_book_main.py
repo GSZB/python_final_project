@@ -110,6 +110,29 @@ class AddressBook(UserDict):
         if name in self.data:
             del self.data[name]
 
+    def birthdays_in_days(self, days: int):
+        today = datetime.today().date()
+        target_date = today + timedelta(days=days)
+
+        result = []
+
+        for record in self.data.values():
+            if record.birthday:
+                bday = record.birthday.value
+
+                next_bday = bday.replace(year=today.year)
+
+                if next_bday < today:
+                    next_bday = bday.replace(year=today.year + 1)
+
+                if next_bday == target_date:
+                    result.append({
+                        "name": record.name.value,
+                        "birthday": next_bday.strftime("%d.%m.%Y")
+                    })
+
+        return result
+
 
 if __name__ == "__main__":
     book = AddressBook()
@@ -123,4 +146,3 @@ if __name__ == "__main__":
     book.add_record(r)
 
     print(book.find("John Doe"))
-    
