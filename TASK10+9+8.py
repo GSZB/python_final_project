@@ -19,7 +19,7 @@
 class Note:
     def __init__(self, text, tags=None):
         self.text = text
-        self.tags = tags or []   # список тегів
+        self.tags = tags or []   
         self.id = None
 
     def edit(self, new_text=None, new_tags=None):
