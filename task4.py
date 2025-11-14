@@ -1,34 +1,20 @@
-class Contact:
-
-    def __init__(self, name: str, phone: str | None = None, email: str | None = None):
-        self.name = name
-        self.phone = phone
-        self.email = email
-
-
 class AddressBook:
-    def __init__(self):
-        self.contacts: list[Contact] = []
 
-    def search(self, query: str) -> list[Contact]:
-        """
-        Здійснює пошук серед контактів книги.
-
-        Пошук виконується за ім'ям, номером телефону або email.
-        Пошук нечутливий до регістру.
-
-        :param query: Рядок для пошуку.
-        :return: Список знайдених контактів.
-        """
+    def search(self, query: str):
         query = query.lower()
-        results: list[Contact] = []
+        result = []
 
-        for contact in self.contacts:
-            if (
-                    query in contact.name.lower()
-                    or (contact.phone and query in contact.phone.lower())
-                    or (contact.email and query in contact.email.lower())
-            ):
-                results.append(contact)
+        for record in self.data.values():
+            if query in record.name.value.lower():
+                result.append(record)
+                continue
 
-        return results
+            if any(query in phone.value for phone in record.phones):
+                result.append(record)
+                continue
+
+            if record.email and query in record.email.value.lower():
+                result.append(record)
+                continue
+
+        return result
