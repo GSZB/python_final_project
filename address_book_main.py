@@ -59,8 +59,16 @@ class Record:
     def set_email(self, email):
         self.email = Email(email)
 
+    def edit_email(self, new_email):
+        if "@" not in new_email or "." not in new_email:
+            raise ValueError("Invalid email format.")
+        self.email = new_email
+
     def set_address(self, address):
         self.address = Address(address)
+
+    def edit_address(self, new_address):
+        self.address = new_address
 
     def set_birthday(self, birthday):
         self.birthday = Birthday(birthday)
@@ -109,6 +117,25 @@ class AddressBook(UserDict):
     def delete(self, name):
         if name in self.data:
             del self.data[name]
+
+    def update_record(self, name, new_name=None, new_address=None, new_email=None):
+        record = self.find(name)
+        if not record:
+            raise KeyError("Contact not found.")
+
+        if new_name:
+            self.data[new_name] = self.data.pop(name)
+            record.name = Name(new_name)
+
+        if new_address:
+            record.address = new_address
+
+        if new_email:
+            if "@" not in new_email or "." not in new_email:
+                raise ValueError("Invalid email format.")
+            record.email = new_email
+
+        return record
 
     def birthdays_in_days(self, days: int):
         today = datetime.today().date()
