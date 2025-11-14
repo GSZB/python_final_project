@@ -11,7 +11,10 @@ guess_command(user_input) — аналізує введений текст і п
 
 
 
+"""
+PromptSession — дозволяє створювати інтерфейс командного рядка з можливістю редагування, історії команд та можливість автодоповнення.
 
+"""
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.completion import WordCompleter
