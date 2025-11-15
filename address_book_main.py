@@ -60,7 +60,7 @@ class Record:
         self.email = Email(email)
 
     def edit_email(self, new_email):
-        if "@" not in new_email or "." not in new_email:
+        if not Email.validate(new_email):
             raise ValueError("Incorrect email format.")
         self.email = new_email
 
