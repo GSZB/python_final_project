@@ -61,7 +61,7 @@ class Record:
 
     def edit_email(self, new_email):
         if "@" not in new_email or "." not in new_email:
-            raise ValueError("Invalid email format.")
+            raise ValueError("Incorrect email format.")
         self.email = new_email
 
     def set_address(self, address):
@@ -132,7 +132,7 @@ class AddressBook(UserDict):
 
         if new_email:
             if "@" not in new_email or "." not in new_email:
-                raise ValueError("Invalid email format.")
+                raise ValueError("Incorrect email format.")
             record.email = new_email
 
         return record
