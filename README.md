@@ -1,8 +1,8 @@
 # python_final_project: PythonNoobs
 Simple address book and notes manager.
 **Team: PythonNoobs**
-Roman Tymoshenko - Scrum Master  
-Mykyta Malevanets - Executive Manager
+Alexandra Bond - Dev
+Mykyta Malevanets - Dev
 Gönczy Szabolcs - Team Lead
 Oleh Shtembuliak - Dev
 
