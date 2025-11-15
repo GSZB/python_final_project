@@ -155,6 +155,10 @@ class NotesBook(UserDict):
         self.data[self.counter] = note
         self.counter += 1
         return note
+    
+    def find_notes(self, query):
+        query = query.lower()
+        return [note for note in self.data.values() if query in note.text.lower()]
 
 if __name__ == "__main__":
     book = AddressBook()
