@@ -121,7 +121,7 @@ class AddressBook(UserDict):
                 continue
 
         return result
-        
+
     def delete(self, name):
         if name in self.data:
             del self.data[name]
