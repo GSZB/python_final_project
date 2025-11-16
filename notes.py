@@ -57,3 +57,5 @@ class NotesBook(UserDict):
         if Path(filename).exists():
             with open(filename, "rb") as f:
                 self.data = pickle.load(f)
+                if self.data:
+                    self.counter = max(self.data.keys()) + 1
