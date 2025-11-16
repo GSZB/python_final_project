@@ -210,17 +210,14 @@ def main():
             except Exception as e:
                 print(f"Error: {e}")
 
-        elif command == "find-note":
+        elif command in ("find-note", "search-notes"):
             keyword = input("Keyword: ").strip()
-            for note in notes.find_by_keywords(keyword): print(note)
+            for note in notes.find_by_keywords(keyword):
+                print(note)
 
         elif command == "find-note-tag":
             tag = input("Tag: ").strip()
             for note in notes.find_by_tag(tag): print(note)
-
-        elif command == "search-notes":
-            keyword = input("Keyword: ").strip()
-            for note in notes.find_by_keywords(keyword): print(note)
 
         elif command == "sort-notes-by-tags":
             for note in notes.sort_by_tags(): print(note)
