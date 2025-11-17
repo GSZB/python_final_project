@@ -147,32 +147,162 @@ Birthday: формат DD.MM.YYYY
 Збереження та завантаження
 Використовується модуль pickle
 
-Приклад:
+Файли address_book.py, fields.py, record.py, notes.py містять відповідні класи. main.py — запускає інтерактивну консоль.
 
-ab.save("my_addressbook.pkl") ab.load("my_addressbook.pkl")
+2. Встановлення
 
-nb.save("my_notes.pkl") nb.load("my_notes.pkl")
+Клонувати або скопіювати проект на локальний комп’ютер.
 
-Приклад використання
-Створення контакту:
+Створити віртуальне середовище (рекомендовано для ізоляції залежностей):
 
-rec = Record("Ivan Ivanov") rec.add_phone("0501234567") rec.set_email("ivan@example.com") rec.set_birthday("15.11.1990")
+python -m venv venv
 
-Додавання у телефонну книгу:
 
-ab = AddressBook() ab.add_record(rec)
+Активувати віртуальне середовище:
 
-Створення нотатки:
+Windows:
 
-nb = NotesBook() nb.add_note("Buy milk", tags=["shopping", "urgent"])
+venv\Scripts\activate
 
-Переваги та можливості
-Модульність – кожне поле окремий клас
 
-Легке розширення – можна додати нові типи полів
+macOS/Linux:
 
-Валідація даних – неможливо ввести неправильний email або телефон
+source venv/bin/activate
 
-Пошук та сортування – по тегах, ключових словах і днях народження
 
-Збереження та завантаження – зручно для зберігання даних
+Встановити залежності з requirements.txt:
+
+pip install -r requirements.txt
+
+3. Файл requirements.txt
+
+Для твого проекту необхідна тільки бібліотека prompt_toolkit для інтерактивного CLI:
+
+prompt_toolkit>=3.0.39
+
+
+Інші бібліотеки (pickle, pathlib, datetime, re) входять в стандартну бібліотеку Python.
+
+4. Запуск програми
+
+У терміналі, перебуваючи в папці з main.py:
+
+python main.py
+
+
+Після запуску з’явиться підказка:
+
+Welcome to AddressBook! Type 'help' to see available commands.
+Command:
+
+5. Інтерактивне використання
+Додавання контактів
+Command: add
+Name: Ivan Ivanov
+Phone: +380501234567
+Contact added
+
+Додавання email
+Command: add-email
+Contact name: Ivan Ivanov
+Email: ivan@example.com
+Email added
+
+Додавання адреси
+Command: add-address
+Contact name: Ivan Ivanov
+Address: Kyiv, Ukraine
+Address added
+
+Додавання дня народження
+Command: add-birthday
+Contact name: Ivan Ivanov
+Birthday (DD.MM.YYYY): 15.12.1990
+Birthday added
+
+Редагування контакту
+Command: edit-contact
+Old name: Ivan Ivanov
+New name (optional): Ivan Petrov
+New email (optional): ivan.petrov@example.com
+New address (optional): Lviv, Ukraine
+Contact updated
+
+Видалення контакту
+Command: delete-contact
+Name: Ivan Petrov
+Contact deleted
+
+Пошук контактів
+
+За іменем:
+
+Command: find
+Search name: Ivan
+Name: Ivan Ivanov
+Phones: +380501234567
+Email: ivan@example.com
+Address: Kyiv, Ukraine
+Birthday: 15.12.1990
+
+
+За будь-яким полем:
+
+Command: search-contacts
+Search anything: Kyiv
+
+Перегляд днів народжень
+Command: birthdays
+Days ahead: 7
+Ivan Ivanov — 15.12.1990
+
+Список контактів
+Command: list
+
+Робота з нотатками
+
+Додавання нотатки:
+
+Command: add-note
+Text: Buy milk
+Tags (comma separated): shopping,home
+Added note 1
+
+
+Редагування нотатки:
+
+Command: edit-note
+Note ID: 1
+New text: Buy milk and bread
+New tags (optional): shopping,urgent
+Note updated
+
+
+Пошук нотатки по тегу:
+
+Command: find-note-tag
+Tag: urgent
+[1] Buy milk and bread (tags: shopping, urgent)
+
+
+Вивід всіх нотаток:
+
+Command: list-notes
+[1] Buy milk and bread (tags: shopping, urgent)
+
+
+Видалення нотатки:
+
+Command: delete-note
+Note ID: 1
+Note deleted
+
+6. Збереження даних
+
+Контакти та нотатки автоматично зберігаються у файли addressbook.pkl та notesbook.pkl після кожної зміни. При наступному запуску програми вони завантажуються автоматично.
+
+
+
+
+
+
