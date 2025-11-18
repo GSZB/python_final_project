@@ -55,17 +55,23 @@ class AddressBook(UserDict):
         today = datetime.today().date()
         target_date = today + timedelta(days=days)
         result: List[dict] = []
+
         for record in self.data.values():
-            if record.birthday:
-                bday = record.birthday.value
-                next_bday = bday.replace(year=today.year)
-                if next_bday < today:
-                    next_bday = bday.replace(year=today.year + 1)
-                if next_bday == target_date:
-                    result.append({
-                        "name": record.name.value,
-                        "birthday": next_bday.strftime("%d.%m.%Y")
-                    })
+            if not record.birthday:
+                continue
+
+            bday = record.birthday.value  
+            next_bday = bday.replace(year=today.year)
+
+            if next_bday < today:
+                next_bday = bday.replace(year=today.year + 1)
+
+            if today <= next_bday <= target_date:
+                result.append({
+                    "name": record.name.value,
+                    "birthday": next_bday.strftime("%d.%m.%Y")
+                })
+
         return result
 
     def save(self, filename: str = "addressbook.pkl"):
